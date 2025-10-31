@@ -48,25 +48,40 @@ if (!MONGO_URI) {
   process.exit(1);
 }
 
-mongoose.connect(MONGO_URI, {
-  serverSelectionTimeoutMS: 5000,
-  socketTimeoutMS: 45000,
-})
-  .then(() => {
+// MongoDB connection - handle serverless (Vercel) differently
+let isConnected = false;
+
+async function connectDB() {
+  if (isConnected) {
+    return;
+  }
+  
+  try {
+    await mongoose.connect(MONGO_URI, {
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+    });
+    isConnected = true;
     console.log('✅ Connected to MongoDB Atlas');
     console.log('📊 Database:', mongoose.connection.name);
-    // Start scraping after successful connection
-    startScraping();
-  })
-  .catch((err) => {
+  } catch (err) {
     console.error('❌ MongoDB connection error:', err.message);
     console.log('\n⚠️  Troubleshooting:');
     console.log('   1. Check your MONGO_URI in .env file');
     console.log('   2. Verify MongoDB Atlas network access (allow 0.0.0.0/0)');
     console.log('   3. Check username/password are correct');
     console.log('   4. Ensure cluster is active\n');
-    process.exit(1);
+    throw err;
+  }
+}
+
+// Connect to MongoDB immediately in non-Vercel environments
+if (process.env.VERCEL !== '1') {
+  connectDB().then(() => {
+    // Start scraping after successful connection
+    startScraping();
   });
+}
 
 /**
  * Scrape contest standings and update database
@@ -143,6 +158,8 @@ function startScraping() {
  */
 app.get('/', async (req, res) => {
   try {
+    await connectDB();
+    
     // Get all submissions for the current contest, sort by newest first, then by waiting status
     const submissions = await Submission.find({ contestId: CURRENT_CONTEST_ID })
       .sort({ balloonStatus: 1, submissionTime: -1 }); // waiting first, then by time
@@ -169,6 +186,8 @@ app.get('/', async (req, res) => {
  */
 app.post('/deliver/:id', async (req, res) => {
   try {
+    await connectDB();
+    
     const submission = await Submission.findOne({ 
       _id: req.params.id, 
       contestId: CURRENT_CONTEST_ID 
@@ -195,6 +214,8 @@ app.post('/deliver/:id', async (req, res) => {
  */
 app.post('/undeliver/:id', async (req, res) => {
   try {
+    await connectDB();
+    
     const submission = await Submission.findOne({ 
       _id: req.params.id, 
       contestId: CURRENT_CONTEST_ID 
@@ -220,6 +241,7 @@ app.post('/undeliver/:id', async (req, res) => {
  * Manual refresh endpoint
  */
 app.post('/refresh', async (req, res) => {
+  await connectDB();
   await scrapeAndUpdate();
   res.redirect('/');
 });
@@ -229,6 +251,8 @@ app.post('/refresh', async (req, res) => {
  */
 app.get('/api/submissions', async (req, res) => {
   try {
+    await connectDB();
+    
     const submissions = await Submission.find({ contestId: CURRENT_CONTEST_ID })
       .sort({ balloonStatus: 1, submissionTime: -1 });
     res.json(submissions);
@@ -242,6 +266,8 @@ app.get('/api/submissions', async (req, res) => {
  */
 app.post('/change-contest', async (req, res) => {
   try {
+    await connectDB();
+    
     const newUrl = req.body.contestUrl;
     
     if (!newUrl || !newUrl.includes('coderoj.com/c/')) {
@@ -274,6 +300,8 @@ app.post('/change-contest', async (req, res) => {
  */
 app.post('/reset', async (req, res) => {
   try {
+    await connectDB();
+    
     await Submission.deleteMany({ contestId: CURRENT_CONTEST_ID });
     console.log(`🗑️  All submissions cleared for contest: ${CURRENT_CONTEST_ID}`);
     res.redirect('/');
@@ -283,10 +311,15 @@ app.post('/reset', async (req, res) => {
   }
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`\n🎈 Balloon Tracker Server Running`);
-  console.log(`📍 URL: http://localhost:${PORT}`);
-  console.log(`🏆 Contest: ${CONTEST_URL}`);
-  console.log(`⏱️  Auto-refresh: Every 30 seconds\n`);
-});
+// Start server (only in non-Vercel environments)
+if (process.env.VERCEL !== '1') {
+  app.listen(PORT, () => {
+    console.log(`\n🎈 Balloon Tracker Server Running`);
+    console.log(`📍 URL: http://localhost:${PORT}`);
+    console.log(`🏆 Contest: ${CONTEST_URL}`);
+    console.log(`⏱️  Auto-refresh: Every 30 seconds\n`);
+  });
+}
+
+// Export for Vercel
+export default app;
