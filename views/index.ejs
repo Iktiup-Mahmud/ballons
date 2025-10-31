@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎈 IUPC Balloon Tracker</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <meta http-equiv="refresh" content="30" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header Section -->
+      <header class="header">
+        <div class="header-content">
+          <h1 class="title">
+            <span class="balloon-icon">🎈</span>
+            IUPC Balloon Tracker
+          </h1>
+          <p class="subtitle">
+            Contest:
+            <a href="<%= contestUrl %>" target="_blank" class="contest-link"
+              ><%= contestUrl %></a
+            >
+          </p>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-grid">
+          <div class="stat-card waiting-card">
+            <div class="stat-icon">⏳</div>
+            <div class="stat-content">
+              <div class="stat-number"><%= waitingCount %></div>
+              <div class="stat-label">Waiting</div>
+            </div>
+          </div>
+
+          <div class="stat-card delivered-card">
+            <div class="stat-icon">✅</div>
+            <div class="stat-content">
+              <div class="stat-number"><%= deliveredCount %></div>
+              <div class="stat-label">Delivered</div>
+            </div>
+          </div>
+
+          <div class="stat-card total-card">
+            <div class="stat-icon">📊</div>
+            <div class="stat-content">
+              <div class="stat-number"><%= totalCount %></div>
+              <div class="stat-label">Total</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-bar">
+          <form action="/change-contest" method="POST" style="display: inline-flex; gap: 8px; align-items: center;">
+            <input 
+              type="text" 
+              name="contestUrl" 
+              placeholder="Enter CoderOJ Contest URL" 
+              class="contest-input"
+              value="<%= contestUrl %>"
+              required
+            />
+            <button type="submit" class="btn btn-primary">
+              <span class="btn-icon">🔗</span>
+              Change Contest
+            </button>
+          </form>
+          
+          <form action="/refresh" method="POST" style="display: inline">
+            <button type="submit" class="btn btn-primary">
+              <span class="btn-icon">🔄</span>
+              Refresh Now
+            </button>
+          </form>
+          <form
+            action="/reset"
+            method="POST"
+            style="display: inline"
+            onsubmit="return confirm('Are you sure you want to delete all submissions?');"
+          >
+            <button type="submit" class="btn btn-danger">
+              <span class="btn-icon">🗑️</span>
+              Reset All
+            </button>
+          </form>
+          <div class="auto-refresh-info">⏱️ Auto-refresh every 30s</div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <% if (submissions.length === 0) { %>
+        <div class="empty-state">
+          <div class="empty-icon">🎈</div>
+          <h2>No Submissions Yet</h2>
+          <p>Waiting for accepted submissions to appear...</p>
+          <p class="empty-hint">The scraper will check every 30 seconds</p>
+        </div>
+        <% } else { %>
+        <div class="table-wrapper">
+          <table class="submissions-table">
+            <thead>
+              <tr>
+                <th class="col-number">#</th>
+                <th class="col-team">Team Name</th>
+                <th class="col-problem">Problem</th>
+                <th class="col-time">Time</th>
+                <th class="col-status">Status</th>
+                <th class="col-action">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% submissions.forEach((submission, index) => { %>
+              <tr
+                class="table-row <%= submission.balloonStatus === 'delivered' ? 'row-delivered' : 'row-waiting' %>"
+              >
+                <td class="col-number">
+                  <span class="row-number"><%= index + 1 %></span>
+                </td>
+                <td class="col-team">
+                  <div class="team-info">
+                    <span class="team-name"><%= submission.teamName %></span>
+                  </div>
+                </td>
+                <td class="col-problem">
+                  <span class="problem-badge"
+                    ><%= submission.problemCode %></span
+                  >
+                </td>
+                <td class="col-time">
+                  <span class="time-value"><%= submission.time %> min</span>
+                </td>
+                <td class="col-status">
+                  <% if (submission.balloonStatus === 'waiting') { %>
+                  <span class="status-badge status-waiting">
+                    <span class="status-icon">⏳</span>
+                    Waiting
+                  </span>
+                  <% } else { %>
+                  <span class="status-badge status-delivered">
+                    <span class="status-icon">✅</span>
+                    Delivered
+                  </span>
+                  <% } %>
+                </td>
+                <td class="col-action">
+                  <% if (submission.balloonStatus === 'waiting') { %>
+                  <form action="/deliver/<%= submission._id %>" method="POST">
+                    <button type="submit" class="btn btn-success">
+                      Mark Delivered
+                    </button>
+                  </form>
+                  <% } else { %>
+                  <form action="/undeliver/<%= submission._id %>" method="POST">
+                    <button type="submit" class="btn btn-secondary">
+                      Undo
+                    </button>
+                  </form>
+                  <% } %>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+        <% } %>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>
+          Built with ❤️ for IUPC | Last refresh: <%= new
+          Date().toLocaleTimeString() %>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,623 @@
+<!DOCTYPE doctype html>
+<html>
+   <head>
+        <!-- App Meta -->
+      <meta charset="utf-8">
+      <meta content="width=device-width,initial-scale=1,maximum-scale=1" name="viewport">
+      <meta content="AqSRqgNNcISdYsaWZSdbd1AD05Ra7PAdMr60mAuu" name="csrf-token"/>
+      <meta content="CoderOJ" name="app-name"/>
+      <meta content="eyJkcml2ZXIiOiJhYmx5IiwiZWNob19zZXJ2ZXJfaG9zdCI6IjEyNy4wLjAuMTo2MDAxIiwicHVzaGVyX2tleSI6ImVlNDA1MmRhYjQ0ZTNmMWQxZDcyIiwicHVzaGVyX2NsdXN0ZXIiOiJtdDEiLCJhYmx5X2tleSI6InhXaXhRQS5Wbnp4T2c6VUMzZ2k5ZjFEdmNvSnJIZzZ3MzRfd0xDRHZHN3ZQZVNyNlpfWWRialVkUSJ9" name="socket"/>
+      <link href="https://www.coderoj.com/assets/img/favicon.png" rel="icon" sizes="16x16" type="image/gif">
+      <title>
+         test3 - CoderOJ
+      </title>
+      <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js" type="text/javascript"></script>
+      <script src="https://www.coderoj.com/lib/ckeditor/4.13.1/ckeditor.js"></script>
+      
+      <script src="/js/app.js?id=575c5da96fc3bf76d1c6"> </script>
+
+      <link rel="stylesheet" type="text/css" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+      <link rel="stylesheet" type="text/css" href="https://www.coderoj.com/font/Exo_2/style.css">
+      <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
+      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="/css/app.css?id=1bb42cbba3163ab6a094">
+        
+   </head>
+   <body>
+      
+      <!-- <div id="pre-loader"><style type="text/css">
+	body{
+		background-color: #ffffff;
+		text-align: center;
+	}
+</style>
+<img src="http://eduhome.tserm.com/img/site/preload.gif">
+<div class="preloader-txt" id="loadingTxt">Loading 0%</div></div> -->
+      <div id="body-area">
+         <div id="modal-area">
+            <div id="modal-structure">
+   <div class="modal fade" id="##modal_id##" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header modal-content-header" id='##modal_header_id##'>
+               <h5 class="modal-title" id='##modal_header_title_id##'></h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <div id="##modal_body_btn_close_id##" style="display: none">
+                  <button type="button" class="close" style="margin: -15px;" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div id="##modal_body_id##"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div id="modal-area"></div>         </div>
+         <div class="containerr-fluid content-body" style="padding: 0px">
+            <div id="app-body">
+               <meta content="" name="user-private-channel-key"/>               <style type="text/css">
+    .navbar-login .option-list {
+        padding: 10px 2px 10px 2px;
+        border: 1px solid #eeeeee;
+        border-width: 0px 0px 1px 0px;
+    }
+
+    .navbar-login a {
+        color: #2C3542;
+    }
+
+    .navbar-login a:focus {
+        background: #ffffff;
+    }
+
+    .navbar-login a:hover {
+        text-decoration: none;
+        background-color: #f5f5f5;
+    }
+
+    .navbar-login a:hover i {
+        color: #1A6FC9;
+    }
+
+    .delHoverA:focus {
+        text-decoration: none;
+        color: #ffffff
+    }
+
+    .navListLeftIcon {
+        font-size: 35px;
+        margin-top: 5px;
+        color: #2c3e50;
+    }
+
+    .nav-link {
+        color: #2C3542 !important;
+        font-family: "Ubuntu", "Hind Siliguri", "Helvetica", sans-serif !important;
+    }
+
+    @media (max-width: 990px) {
+        .navbar .dropdown-menu {
+            max-height: 200px;
+            width: 300px;
+            overflow-y: auto;
+        }
+
+        .navbar-header {
+            padding-left: 0px;
+        }
+
+        .coderOJLogo {
+            margin-left: 5px;
+        }
+
+        .btn-nav-toggle{
+            background: #000000;
+            color: #ffffff;
+        }
+
+        .nav-link {
+            padding: 10px 0px 10px 10px !important;
+        }
+
+        .navbar-custom .nav-pills {
+            margin-left: 0px;
+        }
+
+        .dropdown-menu-custom {
+            margin-left: 0px;
+            box-shadow: none!important;
+            margin-bottom: 5px;
+        }
+    }
+
+    .nav-tabs .nav-link {
+        color: #000000 !important;
+    }
+
+    .nav-tabs .nav-link:focus {
+        background: #ffffff !important;
+        font-weight: bold;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom" style="box-shadow: 0 0px 2px rgba(0,0,0,.1)" role="navigation">
+    <div class="top-loader" style="display: none;" id="top-loader">
+        <div class="bar"></div>
+    </div>
+
+    <div class="container-fluid container">
+        <style type="text/css">
+            .delHoverA:hover {
+                text-decoration: none;
+            }
+        </style>
+
+        <a href="https://www.coderoj.com" class="delHoverA coderOJLogo ">
+            <img src="https://www.coderoj.com/assets/img/favicon.png" style="margin-top: -5px" height="45px" alt="">
+            CoderOJ<strong color="#ced6e0;"><sup>&alpha;</sup></strong>
+        </a>
+
+        <button class="btn btn-primary navbar-toggler btn-nav-toggle" type="button" data-toggle="collapse"
+            data-target="#myNavbar" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-left mr-auto nav-pills">
+                                    <li id="navbar-Home" class="">
+                        <a class="nav-link" href="https://www.coderoj.com" callback="">
+                            <i class="fas fa-home span_icon"></i>Home
+                        </a>
+                    </li>
+                                    <li id="navbar-Contests" class="">
+                        <a class="nav-link" href="https://www.coderoj.com/contests" callback="">
+                            <i class="fa fa-list span_icon"></i>Contests
+                        </a>
+                    </li>
+                                    <li id="navbar-Problems" class="">
+                        <a class="nav-link" href="https://www.coderoj.com/problems" callback="">
+                            <i class="fa fa-list span_icon"></i>Problems
+                        </a>
+                    </li>
+                            </ul>
+
+            <script>
+                $(document).on('click', '.navbar-right .dropdown-menu', function(e) {
+                    e.stopPropagation();
+                });
+            </script>
+            <ul class="nav navbar-nav ml-auto">
+                                    <div class="sign-area">
+                        <button title='Login' style="" class="btn btn-open" data-toggle='modal' data-modal-size="500" data-modal-title='Login' data-url="https://www.coderoj.com/login">
+<i
+                                class="fas fa-sign-in-alt"></i> Login
+</button>                        <button title='Create Your Account' style="" class="btn btn-open" data-toggle='modal' data-modal-size="md" data-modal-title='Create Your Account' data-url="https://www.coderoj.com/register">
+<i
+                                class="fas fa-user-plus"></i> Register
+</button>
+                    </div>
+                
+                            </ul>
+        </div>
+    </div>
+</nav>
+
+<center>
+    <div class="alert-warning loader-top-message" id="top-loader-message"><i class="fas fa-spinner fa-pulse"></i>
+        Loading...</div>
+</center>
+
+<style>
+    .fullPageLoader {
+        position: fixed;
+        z-index: 99999;
+        height: 2em;
+        width: 2em;
+        overflow: show;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        /* Initially hide the loader */
+    }
+
+    /* Transparent Overlay */
+    .fullPageLoader:before {
+        content: '';
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(rgba(20, 20, 20, .8), rgba(0, 0, 0, .8));
+        background: -webkit-radial-gradient(rgba(20, 20, 20, .8), rgba(0, 0, 0, .8));
+    }
+
+    /* :not(:required) hides these rules from IE9 and below */
+    .fullPageLoader:not(:required) {
+        /* hide "loading..." text */
+        font: 0/0 a;
+        color: transparent;
+        text-shadow: none;
+        background-color: transparent;
+        border: 0;
+    }
+
+    .fullPageLoader:not(:required):after {
+        content: '';
+        display: block;
+        font-size: 10px;
+        width: 1em;
+        height: 1em;
+        margin-top: -0.5em;
+        -webkit-animation: spinner 150ms infinite linear;
+        -moz-animation: spinner 150ms infinite linear;
+        -ms-animation: spinner 150ms infinite linear;
+        -o-animation: spinner 150ms infinite linear;
+        animation: spinner 150ms infinite linear;
+        border-radius: 0.5em;
+        -webkit-box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0, rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) 0 1.5em 0 0, rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) -1.5em 0 0 0, rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0, rgba(255, 255, 255, 0.75) 0 -1.5em 0 0, rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
+        box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0, rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) 0 1.5em 0 0, rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) -1.5em 0 0 0, rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0, rgba(255, 255, 255, 0.75) 0 -1.5em 0 0, rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
+    }
+
+    /* Disable scroll when the loader is displayed */
+    .fullPageLoader.show-loader {
+        overflow: hidden;
+    }
+
+    /* Animation */
+    @keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<div id="fullPageLoader" style="display: none">
+    <div class="fullPageLoader">Loading...</div>
+</div>
+                              <div class="container-xl" id="app-container-body">
+                  
+    <style>
+        .contestTime,
+        .contestTitle {
+            font-family: Exo\ 2;
+            font-weight: 700;
+        }
+        .standingsTitle {
+            margin-top: -10px;
+            font-family: Exo\ 2;
+            font-weight: 600;
+            font-size: 25px;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="header" style="text-align: center; margin-bottom: 1px;">
+                    <div class="contestTitle">
+                        test3
+                    </div>
+                    <div class="standingsTitle">
+                        Standings
+                    </div>
+                    <div class="contestTime">
+                                                    <div id="timerArea">
+                                100 : 51 : 31
+                            </div>
+                                                <div id="contestStatusTxt">
+                                                            Contest Is Runnning
+                                                    </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    ContestArena.timer.setTimer(363091, "running")
+                </script>
+                <input type="text" id="startcontesttimer" value="start" name="" hidden="">
+                
+                                
+                <style type="text/css">
+    .table-standings thead tr th:nth-child(1),
+    .table-standings tbody tr td:nth-child(1) {
+        width: 48px;
+        text-align: center
+    }
+
+    .table-standings thead tr th:nth-child(n+4),
+    .table-standings tbody tr td:nth-child(n+4) {
+        width: 64px;
+        text-align: center
+    }
+
+    .table-standings tbody tr td .label {
+        display: block
+    }
+
+    .table-standings tbody tr td .label:first-child {
+        border-radius: .25em .25em 0 0
+    }
+
+    .table-standings tbody tr td .label:last-child {
+        border-radius: 0 0 .25em .25em
+    }
+
+    .table-standings td:nth-child(n+3) a {
+        text-decoration: none
+    }
+
+    .table tbody tr td {
+        vertical-align: middle
+    }
+
+    .label {
+        min-width: 50px;
+        padding: 0.2em 0.6em 0.3em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: 0.25em;
+    }
+
+
+    .label-success {
+        background: #41C281;
+
+    }
+
+    .label-default {
+        background: #2c3e50;
+    }
+
+    .label-info {
+        background: #2980b9;
+    }
+
+    .label-warning {
+        background: #E87F35;
+    }
+
+    .rankList {
+        padding: 5px;
+    }
+
+    tr {
+        border-color: #3742fa !important;
+    }
+
+    th {
+        background: #ffffff;
+    }
+
+    .teamName {
+        color: #297FB9 !important;
+        font-family: "Exo 2";
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+
+    .teamNameSub {
+        font-size: 13px;
+        color: #706788;
+    }
+
+    .contestStandingTable th {
+        border-width: 0px !important;
+        border-color: #eeeeee !important;
+    }
+
+    .contestStandingTable td {
+        border-width: 1px !important;
+        border-color: #F3F5F8 !important;
+        padding: 12px 8px 12px 8px;
+    }
+
+    .acLabel {
+        background-color: #41C281 !important;
+    }
+
+    .firstAcLabel {
+        background-color: #3a8c62 !important;
+    }
+
+    .waLabel {
+        background-color: #E35B5A !important;
+    }
+
+    .frozenLabel {
+        background-color: #2cbdee !important;
+    }
+</style>
+<div class="contestBoxBody contestStandingTable" style="padding: 0px">
+    <div class="table-responsive">
+        <table data-reload="no" class="table table-standings">
+            <thead>
+    <tr>
+        <th rowspan="2" style="vertical-align: middle;">#</th>
+        <th rowspan="2" style="vertical-align: middle;">Name</th>
+        <th rowspan="2" style="width: 64px;"></th>
+        <th rowspan="2" style="width: 24px;"></th>
+                    <th style="width: 64px;">
+    <div style="position: relative; z-index: 100; ">
+                    <span style="color: #ffffff">A</span>
+            </div>
+    
+    <div style="position: relative; z-index: 2;">
+        <svg style="margin-top: -22px; margin-left: -1px;" data-name="Layer 1" viewBox="0 0 24 24" width="35"
+            height="35" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M18.125 3.487C14.538-2.701 5.074-.153 5.08 7c0 3.971 2.257 8.485 5.39 9.685-.217.361-.35.766-.39 1.185 0 1.571 1.489 2.267 2.576 2.776.6.28 1.424.665 1.424.963-.082.31-.228.6-.428.851-.72 1.123.964 2.203 1.684 1.08.424-.561.682-1.23.744-1.931 0-1.571-1.49-2.267-2.576-2.775-.6-.281-1.424-.666-1.433-.865.152-.358.342-.699.568-1.016 2.352-.306 4.33-2.5 5.452-5.2.777-2.252 1.378-5.694.034-8.266"
+                fill="#E6194B" />
+            <path
+                d="M14.057 7a1 1 0 00-1 1 5.712 5.712 0 01-.825 2.47 1.002 1.002 0 001.7 1.06A7.674 7.674 0 0015.057 8a1 1 0 00-1-1z"
+                fill="#E6194B" />
+        </svg>
+    </div>
+
+            <div style="margin-top: 10px; font-size: 14px;">
+            1/1
+        </div>
+    </th>
+                    <th style="width: 64px;">
+    <div style="position: relative; z-index: 100; ">
+                    <span style="color: #ffffff">B</span>
+            </div>
+    
+    <div style="position: relative; z-index: 2;">
+        <svg style="margin-top: -22px; margin-left: -1px;" data-name="Layer 1" viewBox="0 0 24 24" width="35"
+            height="35" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M18.125 3.487C14.538-2.701 5.074-.153 5.08 7c0 3.971 2.257 8.485 5.39 9.685-.217.361-.35.766-.39 1.185 0 1.571 1.489 2.267 2.576 2.776.6.28 1.424.665 1.424.963-.082.31-.228.6-.428.851-.72 1.123.964 2.203 1.684 1.08.424-.561.682-1.23.744-1.931 0-1.571-1.49-2.267-2.576-2.775-.6-.281-1.424-.666-1.433-.865.152-.358.342-.699.568-1.016 2.352-.306 4.33-2.5 5.452-5.2.777-2.252 1.378-5.694.034-8.266"
+                fill="#3CB44B" />
+            <path
+                d="M14.057 7a1 1 0 00-1 1 5.712 5.712 0 01-.825 2.47 1.002 1.002 0 001.7 1.06A7.674 7.674 0 0015.057 8a1 1 0 00-1-1z"
+                fill="#3CB44B" />
+        </svg>
+    </div>
+
+            <div style="margin-top: 10px; font-size: 14px;">
+            1/1
+        </div>
+    </th>
+            </tr>
+</thead>
+            <tbody>
+                <tr data-id="" style="">
+
+        
+        <td style="">1</td>
+        
+
+
+        
+        <td style="min-width: 250px;">
+            <a  href="https://www.coderoj.com/profile/testt2?contest_slug=4dBXruM">
+                <div class="teamName">testt2</div>
+            </a>
+            <div class="teamNameSub"></div>
+        </td>
+        
+
+
+        
+        <td>
+                            <div class="label label-info">1</div>
+                <div class="label label-default"> 13</div>
+                    </td>
+
+        
+
+        <td style="width: 26px;"></td>
+        
+
+                                                    <td>
+                     
+                        <div class="label firstAcLabel">
+                            <div title="Fist to solved" class="fa fa-star"></div>
+                        </div>
+                        <div class="label label-default">1 (13)</div>
+                     
+                </td>
+                                                <td></td>
+                        </tr>
+        <tr data-id="" style="">
+
+        
+        <td style="">2</td>
+        
+
+
+        
+        <td style="min-width: 250px;">
+            <a  href="https://www.coderoj.com/profile/utpalbarua?contest_slug=4dBXruM">
+                <div class="teamName">utpalbarua</div>
+            </a>
+            <div class="teamNameSub"></div>
+        </td>
+        
+
+
+        
+        <td>
+                            <div class="label label-info">1</div>
+                <div class="label label-default"> 2912</div>
+                    </td>
+
+        
+
+        <td style="width: 26px;"></td>
+        
+
+                                    <td></td>
+                                                                <td>
+                     
+                        <div class="label firstAcLabel">
+                            <div title="Fist to solved" class="fa fa-star"></div>
+                        </div>
+                        <div class="label label-default">1 (2912)</div>
+                     
+                </td>
+                        </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+
+
+               </div>
+               <div class="col-sm-12" style="padding-top: 80px;"></div>
+<div class="container-fluid col-sm-12">
+<div class="row" style="padding-top: 5px; padding-bottom: 15px; color: #000000;   border: 1px solid #E7ECF1; margin-top: 30px;border-width: 1px 0px 0px 0px; font-weight: bold;">
+<div class="col-sm-0"></div>
+<div class="col-sm-12">
+   <footer class="footer">
+      <div class="row">
+         <div class="col-sm-12"  style="padding-top: 2px;">
+            <p style="font-size:14px; text-align: center; color: #4A525B "><font face="Times New Roman"> 
+               &copy; 2025 CoderOJ<br/>
+               Judge Developed By: <a href="https://www.coderoj.com/profile/AmirHamza">Sk.Amir Hamza</a><br/>
+               Server Time: October 31, 2025, 4:01 pm
+               </font>
+            </p>
+         </div>
+      </div>
+
+</footer>
+
+</div></div></div>            </div>
+         </div>
+      </div>
+   </body>
+</html>
+<script>
+    SocketService.connect();
+    
+</script>
