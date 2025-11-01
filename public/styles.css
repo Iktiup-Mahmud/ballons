@@ -1,6 +1,6 @@
 /* Magic UI & Shadcn Inspired Dark Theme */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 * {
   margin: 0;
@@ -41,7 +41,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -72,7 +73,8 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   line-height: 1.5;
@@ -101,19 +103,28 @@ body {
   margin-bottom: 1.5rem;
   border-radius: var(--radius);
   border: 1px solid hsl(var(--border));
-  background: linear-gradient(to bottom, hsl(var(--card)), hsl(var(--background)));
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--card)),
+    hsl(var(--background))
+  );
   position: relative;
   overflow: hidden;
 }
 
 .header::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--primary)),
+    transparent
+  );
 }
 
 .header-content {
@@ -125,7 +136,11 @@ body {
   font-size: 1.875rem;
   font-weight: 800;
   letter-spacing: -0.025em;
-  background: linear-gradient(to right, hsl(var(--foreground)), hsl(var(--muted-foreground)));
+  background: linear-gradient(
+    to right,
+    hsl(var(--foreground)),
+    hsl(var(--muted-foreground))
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -178,12 +193,18 @@ body {
   animation-fill-mode: both;
 }
 
-.stat-card:nth-child(1) { animation-delay: 0.1s; }
-.stat-card:nth-child(2) { animation-delay: 0.2s; }
-.stat-card:nth-child(3) { animation-delay: 0.3s; }
+.stat-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.stat-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.stat-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
 
 .stat-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -472,7 +493,11 @@ body {
   min-width: 2.25rem;
   height: 2.25rem;
   border-radius: calc(var(--radius) - 2px);
-  background: linear-gradient(135deg, hsl(var(--primary)), hsl(217.2 91.2% 55%));
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary)),
+    hsl(217.2 91.2% 55%)
+  );
   color: hsl(var(--primary-foreground));
   font-size: 1rem;
   font-weight: 700;
@@ -487,7 +512,7 @@ body {
 }
 
 .time-value {
-  font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+  font-family: "SF Mono", "Monaco", "Courier New", monospace;
   color: hsl(var(--muted-foreground));
   font-size: 0.875rem;
   font-weight: 500;
@@ -588,12 +613,17 @@ body {
 }
 
 .shine::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   animation: shimmer 3s infinite;
 }

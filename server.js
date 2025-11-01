@@ -268,30 +268,72 @@ app.post('/change-contest', async (req, res) => {
   try {
     await connectDB();
     
-    const newUrl = req.body.contestUrl;
+    console.log('📥 Change contest request received');
+    console.log('📋 Body:', req.body);
     
-    if (!newUrl || !newUrl.includes('coderoj.com/c/')) {
-      return res.status(400).send('Invalid contest URL. Must be a CoderOJ contest URL.');
+    const newUrl = req.body.contestUrl?.trim();
+    
+    console.log('🔗 New URL:', newUrl);
+    
+    if (!newUrl) {
+      console.log('❌ Empty URL');
+      return res.status(400).send(`
+        <html>
+        <body style="font-family: Arial; padding: 40px; text-align: center;">
+          <h2>❌ Error: No URL Provided</h2>
+          <p>Please enter a valid CoderOJ contest URL.</p>
+          <a href="/" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">Go Back</a>
+        </body>
+        </html>
+      `);
     }
+    
+    if (!newUrl.includes('coderoj.com/c/')) {
+      console.log('❌ Invalid URL format:', newUrl);
+      return res.status(400).send(`
+        <html>
+        <body style="font-family: Arial; padding: 40px; text-align: center;">
+          <h2>❌ Error: Invalid Contest URL</h2>
+          <p>The URL must be a CoderOJ contest URL containing "coderoj.com/c/"</p>
+          <p><strong>Example:</strong> https://www.coderoj.com/c/MCQBt7n/</p>
+          <p style="color: #dc3545;"><strong>You entered:</strong> ${newUrl}</p>
+          <a href="/" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">Go Back</a>
+        </body>
+        </html>
+      `);
+    }
+    
+    const oldUrl = CONTEST_URL;
+    const oldContestId = CURRENT_CONTEST_ID;
     
     // Update the contest URL and extract new contest ID
     CONTEST_URL = newUrl;
     CURRENT_CONTEST_ID = extractContestId(CONTEST_URL);
     
-    // Clear submissions only for the current contest
-    await Submission.deleteMany({ contestId: CURRENT_CONTEST_ID });
+    console.log(`\n🔄 Contest URL changed:`);
+    console.log(`   From: ${oldUrl} (${oldContestId})`);
+    console.log(`   To:   ${CONTEST_URL} (${CURRENT_CONTEST_ID})`);
     
-    console.log(`\n🔄 Contest URL changed to: ${CONTEST_URL}`);
-    console.log(`� Contest ID: ${CURRENT_CONTEST_ID}`);
-    console.log(`🗑️  Submissions cleared for this contest`);
+    // Clear submissions only for the new contest
+    const deleteResult = await Submission.deleteMany({ contestId: CURRENT_CONTEST_ID });
+    console.log(`�️  Cleared ${deleteResult.deletedCount} submissions for contest ${CURRENT_CONTEST_ID}`);
     
     // Restart scraping with new URL
+    console.log('🔄 Restarting scraper...');
     startScraping();
     
     res.redirect('/');
   } catch (error) {
     console.error('❌ Error changing contest:', error);
-    res.status(500).send('Error changing contest');
+    res.status(500).send(`
+      <html>
+      <body style="font-family: Arial; padding: 40px; text-align: center;">
+        <h2>❌ Error Changing Contest</h2>
+        <p>${error.message}</p>
+        <a href="/" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">Go Back</a>
+      </body>
+      </html>
+    `);
   }
 });
 

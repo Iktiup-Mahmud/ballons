@@ -53,11 +53,15 @@
 
         <!-- Action Buttons -->
         <div class="action-bar">
-          <form action="/change-contest" method="POST" style="display: inline-flex; gap: 8px; align-items: center;">
-            <input 
-              type="text" 
-              name="contestUrl" 
-              placeholder="Enter CoderOJ Contest URL" 
+          <form
+            action="/change-contest"
+            method="POST"
+            style="display: inline-flex; gap: 8px; align-items: center"
+          >
+            <input
+              type="text"
+              name="contestUrl"
+              placeholder="Enter CoderOJ Contest URL"
               class="contest-input"
               value="<%= contestUrl %>"
               required
@@ -67,7 +71,7 @@
               Change Contest
             </button>
           </form>
-          
+
           <form action="/refresh" method="POST" style="display: inline">
             <button type="submit" class="btn btn-primary">
               <span class="btn-icon">🔄</span>
